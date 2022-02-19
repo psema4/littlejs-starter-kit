@@ -10,8 +10,7 @@ function dummyFunc() {}
 const sound_click = new Sound([.5,.5])
 if (debug) onerror = (...parameters) => alert(parameters)
 
-currentScope = 'Overworld'
-previousScope = 'Overworld'
+currentScope = previousScope = gameScopes[0]._name
 
 function drawText(text, x, y, size=70) {
     overlayContext.textAlign = 'center'
@@ -24,4 +23,6 @@ function drawText(text, x, y, size=70) {
 }
 
 // defer
-//engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, 'assets/tiles.png')
+setTimeout(() => {
+    engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, 'assets/tiles.png')
+}, 1000)
