@@ -10,8 +10,6 @@ function dummyFunc() {}
 const sound_click = new Sound([.5,.5])
 if (debug) onerror = (...parameters) => alert(parameters)
 
-currentScope = previousScope = gameScopes[0]._name
-
 function drawText(text, x, y, size=70) {
     overlayContext.textAlign = 'center'
     overlayContext.textBaseline = 'top'
@@ -22,7 +20,44 @@ function drawText(text, x, y, size=70) {
     overlayContext.fillText(text, x, y)
 }
 
-// defer
-setTimeout(() => {
-    engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, 'assets/tiles.png')
-}, 1000)
+function addGameScope(scope) {
+        gameScopes.push(scope)
+}
+
+function getGameScope(scopeName) {
+        const results = gameScopes.filter(s=>s._name === scopeName)
+        return results && results.length > 0 && results[0]
+}
+
+function setGameScope(scopeName='') {
+        previousScope = currentScope
+        currentScope = scopeName
+
+        const prev = getGameScope(previousScope)
+        if (debug) console.debug(`Leaving ${prev._name}.`)
+        prev._onExit()
+
+        const curr = getGameScope(currentScope)
+        if (debug) console.debug(`Entering "${curr._name}".`)
+        curr._onEnter()
+}
+
+function gameInit() {
+        gameScopes.forEach((scope) => { scope.gameInit() })
+}
+
+function gameUpdate() {
+        gameScopes.forEach((scope) => { if (!scope._scopedUpdate || (scope._scopedUpdate && scope._name === currentScope)) scope.gameUpdate() })
+}
+
+function gameUpdatePost() {
+        gameScopes.forEach((scope) => { if (!scope._scopedUpdate || (scope._scopedUpdate && scope._name === currentScope)) scope.gameUpdatePost() })
+}
+
+function gameRender() {
+        gameScopes.forEach((scope) => { if (!scope._scopedRender || (scope._scopedRender && scope._name === currentScope)) scope.gameRender() })
+}
+
+function gameRenderPost() {
+        gameScopes.forEach((scope) => { if (!scope._scopedRender || (scope._scopedRender && scope._name === currentScope)) scope.gameRenderPost() })
+}
