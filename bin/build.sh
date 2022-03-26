@@ -4,26 +4,26 @@
 
 WD=$PWD
 
-if [ -d "${WD}/build" ]; then
-    rm -rf "${WD}/build"
+if [ -d "${WD}/docs" ]; then
+    rm -rf "${WD}/docs"
 fi
 
-mkdir "${WD}/build"
-cp index.html ${WD}/build/
+mkdir "${WD}/docs"
+cp index.html ${WD}/docs/
 
-mkdir -p "${WD}/build/vendor/LittleJS"
-cp -p ${WD}/vendor/LittleJS/engine.all.min.js ${WD}/build/vendor/LittleJS/
+mkdir -p "${WD}/docs/vendor/LittleJS"
+cp -p ${WD}/vendor/LittleJS/engine.all.min.js ${WD}/docs/vendor/LittleJS/
 
-mkdir "${WD}/build/assets"
-cp -rp ${WD}/assets/* ${WD}/build/assets/
+mkdir "${WD}/docs/assets"
+cp -rp ${WD}/assets/* ${WD}/docs/assets/
 
-mkdir "${WD}/build/src"
-cp -rp ${WD}/src/* ${WD}/build/src/
+mkdir "${WD}/docs/src"
+cp -rp ${WD}/src/* ${WD}/docs/src/
 
 # combine & minify
 # ...
 
 # update index.html
-perl -pi -e "s/engine\.all\.js/engine.all.min.js/g" ${WD}/build/index.html
+perl -pi -e "s/engine\.all\.js/engine.all.min.js/g" ${WD}/docs/index.html
 
 echo "Done."
