@@ -4,7 +4,7 @@ function drawBtn(button) {
 }
 
 addGameScope(new GameScope({
-    name: 'Main Menu',
+    name: 'Settings',
     type: SCOPES.MENU,
     subType: 'MENU',
 
@@ -23,29 +23,11 @@ addGameScope(new GameScope({
 
         this._vars.buttons.push({
             x: 0,
-            y: 5,
+            y: -10,
             w: 10,
             h: 2,
-            label: 'Play',
+            label: 'Back',
             bgColor: new Color(.7, .7, .7),
-        })
-
-        this._vars.buttons.push({
-            x: 0,
-            y: 0,
-            w: 10,
-            h: 2,
-            label: 'Settings',
-            bgColor: new Color(.7, .7, .9),
-        })
-
-        this._vars.buttons.push({
-            x: 0,
-            y: -5,
-            w: 10,
-            h: 2,
-            label: 'Exit',
-            bgColor: new Color(.7, .7, .9),
         })
     },
 
@@ -65,16 +47,7 @@ addGameScope(new GameScope({
                     if (clickPos.x >= bounds.x1 && clickPos.x <= bounds.x2) {
                         if (clickPos.y >= bounds.y1 && clickPos.y <= bounds.y2) {
                             new Sound([.5,.5]).play(mousePos)
-
-                            if (btnIdx === 0) {
-                                setGameScope('Overworld')
-
-                            } else if (btnIdx === 1) {
-                                setGameScope('Settings')
-
-                            } else if (btnIdx === 2) {
-                                setGameScope('Start')
-                            }
+                            setGameScope("Main Menu")
                         }
                     }
                 })
@@ -83,7 +56,7 @@ addGameScope(new GameScope({
     },
 
     gameUpdatePost: function () {},
-    
+
     gameRender: function () {
         drawRect(cameraPos, tileCollisionSize.add(vec2(50,40)), new Color(.2, .2, .2), 0, 0)
 
@@ -91,7 +64,7 @@ addGameScope(new GameScope({
             drawBtn(button)
         })
     },
-    
+
     gameRenderPost: function () {
         drawText(`${this._name}`, overlayCanvas.width/2, 80, 70)
     },
