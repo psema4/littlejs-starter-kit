@@ -6,7 +6,7 @@
     "scripts": {
         "build": "./bin/build.sh",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "npm run build && cd build && ../node_modules/http-server/bin/http-server -p 8090"
+        "server": "npm run build && cd docs && ../node_modules/http-server/bin/http-server -p 8090"
     },
     "author": "Scott Elcomb",
     "license": "MIT",
