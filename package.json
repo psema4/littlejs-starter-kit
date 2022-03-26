@@ -1,0 +1,16 @@
+{
+    "name": "littlejs-starter-kit",
+    "version": "1.0.0",
+    "description": "Game Jam starter kit for LittleJS",
+    "main": "index.js",
+    "scripts": {
+        "build": "./bin/build.sh",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "npm run build && cd build && ../node_modules/http-server/bin/http-server -p 8090"
+    },
+    "author": "Scott Elcomb",
+    "license": "MIT",
+    "devDependencies": {
+        "http-server": "^0.11.1"
+    }
+}
