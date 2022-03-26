@@ -27,6 +27,12 @@ addGameScope(new GameScope({
         if (!this._scopedMouse || (this._scopedMouse && this._name === currentScope)) {
             if (mouseWasPressed(0)) sound_click.play(mousePos)
         }
+
+        if (!this._scopedKeyboard || (this._scopedKeyboard && this._name === currentScope)) {
+            if (keyWasReleased(27)) { // ESC
+                setGameScope('Main Menu')
+            }
+        }
     },
     
     gameUpdatePost: function () {},
@@ -45,7 +51,10 @@ addGameScope(new GameScope({
         )
     },
 
-    gameRenderPost: function () { drawText(`${this._name}`, overlayCanvas.width/2, 80, 70) },
+    gameRenderPost: function () {
+        drawText(`${this._name}`, overlayCanvas.width/2, 80, 70)
+        drawText('Press <ESC> to exit', overlayCanvas.width/2, overlayCanvas.height-150, 40)
+    },
 
     onEnter: function() {},
     
