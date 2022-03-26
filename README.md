@@ -13,16 +13,16 @@ For a simple menu example, see the [MainMenu](https://github.com/psema4/littlejs
 Several flags are available to customize how GameScopes are executed:
 
 ### Framework Enforced
-* scopedUpdate: If true, a GameScope will only have it's update method called if it is the currently active scope. Set to false to keep a scope running in the background.
-* scopedRender: If true, a GameScope will only have it's render method called if it is the currently active scope. Set to false if you want to keep rendering in the background.
+* `scopedUpdate`: If true, a GameScope will only have it's update method called if it is the currently active scope. Set to false to keep a scope running in the background.
+* `scopedRender`: If true, a GameScope will only have it's render method called if it is the currently active scope. Set to false if you want to keep rendering in the background.
 
 ### Convention
 
 The following GameScope properties should be checked in your GameScope's `gameUpdate()` handlers:
 
-* scopedKeyboard: If true, a GameScope should only process keyboard inputs when it is the active scope
-* scopedMouse: If true, a GameScope should only process mouse inputs when it is the active scope (use in `gameUpdate()` handlers)
-* scopedGamepad: If true, a GameScope should only process gamepad inputs when it is the active scope (use in `gameUpdate()` handlers)
+* `scopedKeyboard`: If true, a GameScope should only process keyboard inputs when it is the active scope
+* `scopedMouse`: If true, a GameScope should only process mouse inputs when it is the active scope
+* `scopedGamepad`: If true, a GameScope should only process gamepad inputs when it is the active scope
 
 ## Initial Setup
 
